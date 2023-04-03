@@ -1,0 +1,73 @@
+
+Table follows {
+  following_user_id integer
+  followed_user_id integer
+  created_at timestamp 
+}
+
+Table obras_madera {
+  id integer [pk]
+  cliente_id integer
+  descripcion varchar
+  tipo varchar
+  estado varchar
+  fecha_inicio date
+  fecha_finalizacion date
+  activo boolean
+  creatorUser integer
+  updatorUser integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table clientes {
+  id integer [pk]
+  descripcion varchar [note: 'Nombre o Razon social']
+  tipo_identificacion varchar
+  identificacion varchar
+  telefono varchar
+  direccion varchar
+  activo boolean
+  creatorUser integer
+  updatorUser integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table muebles {
+  id integer [pk]
+  id_obra_madera integer
+  id_tipo_mueble integer
+  activo boolean
+  creatorUser integer
+  updatorUser integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table tipos_muebles {
+  id integer [pk]
+  descripcion varchar
+  activo boolean
+  creatorUser integer
+  updatorUser integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table tipos_placas_madera {
+  id integer [pk]
+  codigo varchar
+  descripcion varchar
+  activo boolean
+  creatorUser integer
+  updatorUser integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Ref: tipos_muebles.id < muebles.id_tipo_mueble // many-to-one
+
+// Ref: users.id < follows.following_user_id
+
+// Ref: users.id < follows.followed_user_id
